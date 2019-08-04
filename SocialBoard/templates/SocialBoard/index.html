@@ -1,0 +1,27 @@
+{% extends 'SocialBoard/base.html' %}
+{% load static %}
+{% block content %}
+{% if latest_post_list %}
+<p id="hellouser">Hello !</p>
+<a class="btn" id="logoutbtn" href="{% url 'logout' %}">Log Out !</a>
+    <h1 id="maintitle">Billboard</h1>
+    <table>
+        <thead>
+            <tr><td>Title</td><td>Content</td><td>Published date</td><td>Author</td></tr>
+        </thead>
+        <tbody>
+            {% for post in latest_post_list %}
+            <tr>
+                <td>{{post.post_title}}</td>
+                <td>{{post.post_content }}</td>
+                <td>{{post.post_publish_date}}</td>
+                <td>{{post.post_author}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+    <p>No posts are available.</p>
+{% endif %}
+{% endblock %}

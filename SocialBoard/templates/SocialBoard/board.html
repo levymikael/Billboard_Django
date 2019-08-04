@@ -1,0 +1,47 @@
+{% extends 'SocialBoard/base.html' %}
+{% load static %}
+
+{% block content %}
+<button type="button" id="logoutbtn"  >
+    <a class="btn"  href="{% url 'login' %}">Log Out !</a>
+</button>
+<div class="header">
+    <h1 id="maintitle">Billboard</h1>
+
+
+</div>
+<div id="post-adding">
+<div>Please add a Post !</div>
+<form action="/add/" method="POST">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="Title"/><br>
+    <input id="message" type="text" name="message" placeholder="Your message here"/><br>
+    <input type="text" name="author" placeholder="Author"/>
+    <input id="post-button" type="submit" value="Submit" />
+</form>
+    </div>
+{% if latest_post_list %}
+
+            {% for post in latest_post_list %}
+    <div class="panel-body">
+            <fieldset class="col-md-12">
+            <legend>{{post.post_publish_date}}</legend>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                <h3>{{post.post_title}}</h3><br>
+                <div>{{post.post_content }}</div>
+
+                <h5 class="author">Post written by {{post.post_author}} </h5>
+            </div>
+            </div>
+            </fieldset>
+	<div class="clearfix"></div>
+    </div>
+            {% endfor %}
+
+
+{% else %}
+    <p>No posts are available :(.</p>
+{% endif %}
+
+{% endblock %}

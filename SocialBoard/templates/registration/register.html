@@ -1,0 +1,18 @@
+{% extends 'SocialBoard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="form">
+    <h1>Create an account</h1>
+
+    <form class="register-form" action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" value="Create the account" class="btn btn-success"/>
+
+    </form>
+    </div>
+</body>
+</html>
+{% endblock %}
