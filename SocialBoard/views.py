@@ -44,6 +44,6 @@ def add_new_post(request):
             "post_publish_date": request.POST.get("date")
         }
         new_post = Post.objects.create(**new_post_input)
-        return HttpResponseRedirect("/board/")
+        return HttpResponseRedirect("/")
     else:
         return render(request, "SocialBoard/board.html")
